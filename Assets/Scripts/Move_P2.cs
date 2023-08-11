@@ -18,19 +18,19 @@ public class Move_P2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
             if (Mathf.Abs(rigidBody.velocity.x) < maxSpeed.x)
                 rigidBody.AddForce(-60, 0, 0, ForceMode.Acceleration);
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
             if (rigidBody.velocity.x < maxSpeed.x)
                 rigidBody.AddForce(60, 0, 0, ForceMode.Acceleration);
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
             if (Mathf.Abs(rigidBody.velocity.z) < maxSpeed.z)
                 rigidBody.AddForce(0, 0, -60, ForceMode.Acceleration);
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
             if (rigidBody.velocity.z < maxSpeed.z)
                 rigidBody.AddForce(0, 0, 60, ForceMode.Acceleration);
     }

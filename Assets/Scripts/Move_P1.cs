@@ -16,21 +16,21 @@ public class Move_P1 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.A))
             if (Mathf.Abs(rigidBody.velocity.x) < maxSpeed.x)
                 rigidBody.AddForce(-60, 0, 0, ForceMode.Acceleration);
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.D))
             if (rigidBody.velocity.x < maxSpeed.x)
                 rigidBody.AddForce(60, 0, 0, ForceMode.Acceleration);
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.S))
             if (Mathf.Abs(rigidBody.velocity.z) < maxSpeed.z)
                 rigidBody.AddForce(0, 0, -60, ForceMode.Acceleration);
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W))
             if (rigidBody.velocity.z < maxSpeed.z)
                 rigidBody.AddForce(0, 0, 60, ForceMode.Acceleration);
     }

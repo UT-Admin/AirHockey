@@ -7,20 +7,29 @@ public class StrikerController : MonoBehaviour
     private bool MovingStriker = false;
     public float MovingSpeed = 20f;
     private Rigidbody StrikerRB;
+    private Camera MainCam;
+    public LayerMask GroundLayer;
 
     private void Start()
     {
         StrikerRB = GetComponent<Rigidbody>();
+        MainCam = Camera.main;
     }
 
     private void FixedUpdate()
     {
         if (MovingStriker)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(new(Input.mousePosition.x, Input.mousePosition.y, 10));
-            Debug.Log($"Mouse position: {mousePos}");
-            mousePos.y = transform.position.y;
-            StrikerRB.MovePosition(mousePos);
+            Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, 100, GroundLayer))
+            {
+                Vector3 targetPoint = hit.point;
+                targetPoint.y = StrikerRB.position.y;
+                Vector3 dir = (targetPoint - StrikerRB.position).normalized;
+                //StrikerRB.MovePosition(StrikerRB.position + MovingSpeed * Time.deltaTime * dir);
+                //StrikerRB.AddForce(MovingSpeed * dir, ForceMode.VelocityChange);
+                StrikerRB.velocity = MovingSpeed * dir;
+            }
         }
     }
 
